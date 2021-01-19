@@ -75,8 +75,6 @@ class HomeBloc extends ChangeNotifier {
       sourcePosition.toPointLatLng(),
       destinationPosition.toPointLatLng(),
     );
-    markers.clear();
-    polylines.clear();
     markers.addAll([
       Marker(markerId: MarkerId(SOURCE_ID), position: sourcePosition),
       Marker(
@@ -85,10 +83,12 @@ class HomeBloc extends ChangeNotifier {
           icon:
               BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange))
     ]);
-    polylines.add(Polyline(
-      polylineId: PolylineId(POLYLINE_ID),
-      points: result.points.toLatLngList(),
-    ));
+    polylines.addAll([
+      Polyline(
+        polylineId: PolylineId(POLYLINE_ID),
+        points: result.points.toLatLngList(),
+      )
+    ]);
     notifyListeners();
   }
 }
